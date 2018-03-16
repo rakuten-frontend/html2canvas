@@ -248,7 +248,7 @@ export class DocumentCloner {
                 : this.createElementClone(node);
 
         const window = node.ownerDocument.defaultView;
-        const style = node instanceof window.HTMLElement ? window.getComputedStyle(node) : null;
+        const style = node instanceof window.HTMLElement || node instanceof window.SVGElement ? window.getComputedStyle(node) : null;
         const styleBefore =
             node instanceof window.HTMLElement ? window.getComputedStyle(node, ':before') : null;
         const styleAfter =
