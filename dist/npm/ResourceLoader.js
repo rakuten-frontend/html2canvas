@@ -141,11 +141,8 @@ var ResourceLoader = function () {
                         return resolve(img);
                     };
                     //ios safari 10.3 taints canvas with data urls unless crossOrigin is set to anonymous
-                    if (!supportsDataImages || useCORS) {
-                        img.crossOrigin = 'Anonymous';
-                        img.setAttribute('crossOrigin', 'Anonymous');
-                    }
-
+                    img.crossOrigin = 'Anonymous';
+                    img.setAttribute('crossOrigin', 'Anonymous');
                     img.onerror = reject;
                     img.src = src;
                     if (img.complete === true) {
