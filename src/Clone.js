@@ -169,6 +169,8 @@ export class DocumentCloner {
                 if (__DEV__) {
                     this.logger.log(`Unable to clone canvas contents, canvas is tainted`);
                 }
+                img.src = 'http://via.placeholder.com/'+node.clientWidth+'x'+node.clientHeight;
+                return img;
             }
         }
 
@@ -275,7 +277,7 @@ export class DocumentCloner {
                         // $FlowFixMe
                         !this.options.ignoreElements(child)))
             ) {
-                if (!this.copyStyles || child.nodeName !== 'STYLE') {
+                if (!this.copyStyles || child.nodeName !== 'STYLE' || node.tagName !== 'NOSCRIPT' ) {
                     clone.appendChild(this.cloneNode(child));
                 }
             }
