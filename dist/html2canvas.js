@@ -6229,6 +6229,8 @@ var DocumentCloner = exports.DocumentCloner = function () {
                     if (true) {
                         this.logger.log('Unable to clone canvas contents, canvas is tainted');
                     }
+                    img.src = 'http://via.placeholder.com/' + node.clientWidth + 'x' + node.clientHeight;
+                    return img;
                 }
             }
 
@@ -6318,7 +6320,7 @@ var DocumentCloner = exports.DocumentCloner = function () {
                 !child.hasAttribute(IGNORE_ATTRIBUTE) && (typeof this.options.ignoreElements !== 'function' ||
                 // $FlowFixMe
                 !this.options.ignoreElements(child))) {
-                    if (!this.copyStyles || child.nodeName !== 'STYLE') {
+                    if (!this.copyStyles || child.nodeName !== 'STYLE' || node.tagName !== 'NOSCRIPT') {
                         clone.appendChild(this.cloneNode(child));
                     }
                 }
